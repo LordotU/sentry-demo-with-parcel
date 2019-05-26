@@ -1,0 +1,30 @@
+doctype html
+
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+
+  title Sentry Demo
+
+  script(src='https://browser.sentry-cdn.com/5.3.0/bundle.min.js' crossorigin='anonymous')
+  script.
+    if (!! process.env.SENTRY_APP_KEY && !! process.env.SENTRY_PROJECT_ID)
+      Sentry.init({ dsn: 'https://#{process.env.SENTRY_APP_KEY}@sentry.io/#{process.env.SENTRY_PROJECT_ID}' });
+    else
+      window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('app').innerHTML = (
+          '<h1>You should pass env vars <span style="color:red">SENTRY_APP_KEY</span> and <span style="color:red">SENTRY_PROJECT_ID</span> via <em>.env</em> file!</h1>'
+        )
+      })
+
+body
+  #app
+
+    h1 Sentry Demo
+
+    button#nonActionButton Non action button
+    button#actionButton(onclick='actionButtonClickHandler()') Action button
+
+  script(src='errors/pageLoadError.js')
+  script(src='index.js')
