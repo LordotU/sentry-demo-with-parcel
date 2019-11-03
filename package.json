@@ -20,7 +20,7 @@
     "dev": "parcel --port 1234 --hmr-port 5678 ./src/index.pug"
   },
   "devDependencies": {
-    "now": "^15.3.0",
+    "now": "^16.4.4",
     "parcel-bundler": "^1.12.3",
     "pug": "^2.0.3"
   }
